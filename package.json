@@ -38,8 +38,8 @@
   "scripts": {
     "start:production": "env-cmd -f ./.env.production webpack-dev-server .",
     "start:development": "env-cmd -f ./.env.development webpack-dev-server .",
-    "build:production": "env-cmd -f ./.env.production Webpack .",
-    "build:development": "env-cmd -f ./.env.development Webpack .",
+    "build:production": "env-cmd -f ./.env.production webpack .",
+    "build:development": "env-cmd -f ./.env.development webpack .",
     "test": "test"
   },
   "keywords": [
