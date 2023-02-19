@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 module.exports = {
   mode: "development",
@@ -10,6 +11,7 @@ module.exports = {
   devServer: {
     port: "9500",
     static: ["./public"],
+    watchFiles: ["./src", "./public"],
     open: true,
     hot: true,
     liveReload: true,
@@ -31,4 +33,5 @@ module.exports = {
     ],
   },
   devtool: "cheap-module-source-map",
+  plugins: [new webpack.EnvironmentPlugin({ ...process.env })],
 };

@@ -9,7 +9,8 @@ root.render(
     <App />
   </React.StrictMode>
 );
-if (process.env.NODE_ENV === "development") {
+if (process.env.REACT_APP_ENV === "development") {
+  document.getElementById("react-chrome-app-007").classList.add("visible");
   const root = ReactDom.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>

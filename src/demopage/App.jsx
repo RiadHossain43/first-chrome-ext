@@ -1,32 +1,57 @@
 import React from "react";
 import {
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBBtn,
-  MDBInput,
-  MDBInputGroup,
-} from "mdb-react-ui-kit";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
+  Container,
+  CardContent,
+  CardActions,
+  Button,
+  TextField,
+  Card,
+  Typography,
+} from "@mui/material";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 const App = () => {
   return (
-    <MDBContainer>
-      <MDBCard className="m-5 w-50">
-        <MDBCardBody>
-          <p>
+    <Container>
+      <Card>
+        <CardContent>
+          <Typography>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga sed
             aliquam quae harum saepe hic dolore repellat asperiores sint illo
             distinctio corporis officia assumenda suscipit illum aut, omnis
             reiciendis! Saepe.
-          </p>
-          <MDBInputGroup className="mb-2">
-            <MDBInput placeholder="Please type what I say..." />
-          </MDBInputGroup>
-          <MDBBtn>Click me</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBContainer>
+          </Typography>
+          <TextField
+            size="sm"
+            margin="normal"
+            required
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            size="sm"
+            margin="normal"
+            required
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+        </CardContent>
+        <CardActions>
+          <Button variant="" size="small">
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    </Container>
   );
 };
 
