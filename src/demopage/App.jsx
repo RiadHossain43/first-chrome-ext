@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   CardContent,
@@ -13,9 +13,17 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Joyride from "react-joyride";
+const stepkey = "react-step-builder-key";
+function getSteps() {
+  return localStorage.getItem(stepkey)
+    ? JSON.parse(localStorage.getItem(stepkey))
+    : [];
+}
 const App = () => {
   return (
     <Container>
+      <Joyride steps={getSteps()} run />
       <Card>
         <CardContent>
           <Typography>
@@ -46,7 +54,7 @@ const App = () => {
           />
         </CardContent>
         <CardActions>
-          <Button variant="" size="small">
+          <Button className="first-step" size="small">
             Learn More
           </Button>
         </CardActions>

@@ -4,6 +4,7 @@ module.exports = {
   mode: "development",
   entry: "./index.js",
   output: {
+    publicPath: '',
     path: path.resolve(__dirname, "public"),
     filename: "main.js",
   },
