@@ -4,6 +4,7 @@ const stepskey = "react-step-builder-key";
 export default function useBuilderStore() {
   const { selector, ...elementPickerRest } = useElementPicker();
   const [content, setContent] = useState("");
+  const [isJourneyRunning, setIsJourneyRunning] = useState(false);
   function handleContentChange(value) {
     setContent(value);
   }
@@ -25,11 +26,16 @@ export default function useBuilderStore() {
   function clearSteps() {
     localStorage.clear(stepskey);
   }
+  function toggleJourney() {
+    setIsJourneyRunning((state) => !state);
+  }
   return {
     selector,
+    isJourneyRunning,
     handleContentChange,
     saveStep,
     clearSteps,
+    toggleJourney,
     ...elementPickerRest,
   };
 }

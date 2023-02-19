@@ -1,6 +1,13 @@
 import React from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import useBuilder from "./store/useBuilder";
+import Joyride from "react-joyride";
+const stepkey = "react-step-builder-key";
+function getSteps() {
+  return localStorage.getItem(stepkey)
+    ? JSON.parse(localStorage.getItem(stepkey))
+    : [];
+}
 const Content = () => {
   const {
     image,
@@ -9,9 +16,16 @@ const Content = () => {
     saveStep,
     clearSteps,
     handleContentChange,
+    toggleJourney,
+    isJourneyRunning,
   } = useBuilder();
   return (
     <React.Fragment>
+      {getSteps().length ? (
+        <Button variant="contained" fullWidth onClick={toggleJourney}>
+          Run your guide <i className="fa-solid fa-arrow-right" />
+        </Button>
+      ) : null}
       <Button onClick={startSelection}>
         <i className="fa-solid fa-crosshairs" />
       </Button>
@@ -22,6 +36,7 @@ const Content = () => {
       <Button color="error" onClick={clearSteps}>
         <i className="fa-solid fa-trash-can" /> Clear steps
       </Button>
+
       {image && (
         <React.Fragment>
           <Typography sx={{ fontSize: 12 }}></Typography>
@@ -37,6 +52,7 @@ const Content = () => {
           </Button>
         </React.Fragment>
       )}
+      <Joyride steps={getSteps()} run={isJourneyRunning} />
     </React.Fragment>
   );
 };

@@ -12,17 +12,10 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import Joyride from "react-joyride";
-const stepkey = "react-step-builder-key";
-function getSteps() {
-  return localStorage.getItem(stepkey)
-    ? JSON.parse(localStorage.getItem(stepkey))
-    : [];
-}
+
 const App = () => {
   return (
     <Container>
-      <Joyride steps={getSteps()} run />
       <Card>
         <CardContent>
           <Typography>
