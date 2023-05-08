@@ -28,7 +28,9 @@ export default function useElementPicker() {
       onClick: function (el) {
         setSelector(uniqueElementSelector(el));
         setElement(el);
-        takeScreenshot(el);
+        console.log(el)
+        console.log(uniqueElementSelector(el))
+        // takeScreenshot(el);
         picker.stop();
       },
     });
