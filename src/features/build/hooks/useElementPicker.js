@@ -10,9 +10,8 @@ export default function useElementPicker() {
   const [image, setImage] = useState(null);
   const { openApplication, toggleApplication } = useApplication();
   useEffect(() => {
-    setImage(snapShot);
     openApplication();
-  }, [snapShot]);
+  }, [element]);
   const picker = new ElementPicker({
     style: {
       background: "rgba(30,0,255,0.08)",
@@ -28,9 +27,8 @@ export default function useElementPicker() {
       onClick: function (el) {
         setSelector(uniqueElementSelector(el));
         setElement(el);
-        console.log(el)
-        console.log(uniqueElementSelector(el))
-        // takeScreenshot(el);
+        console.log(el);
+        console.log(uniqueElementSelector(el));
         picker.stop();
       },
     });

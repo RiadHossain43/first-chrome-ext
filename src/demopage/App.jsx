@@ -18,6 +18,10 @@ const App = () => {
     <Container>
       <Card>
         <CardContent>
+          <img
+            width={500}
+            src="https://imssystems.tech/static/assets/images/ims-technologies-official.png"
+          />
           <Typography>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga sed
             aliquam quae harum saepe hic dolore repellat asperiores sint illo

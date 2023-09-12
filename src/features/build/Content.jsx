@@ -3,6 +3,25 @@ import { Button, TextField, Typography } from "@mui/material";
 import useBuilder from "./store/useBuilder";
 import Joyride from "react-joyride";
 const stepkey = "react-step-builder-key";
+
+function downloadImage(url) {
+  fetch(url)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const urlsplitted = url.split("/");
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", urlsplitted[urlsplitted.length - 1]);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    })
+    .catch((error) => {
+      console.error("Error fetching image:", error);
+    });
+}
+
 function getSteps() {
   return localStorage.getItem(stepkey)
     ? JSON.parse(localStorage.getItem(stepkey))
@@ -18,6 +37,7 @@ const Content = () => {
     handleContentChange,
     toggleJourney,
     isJourneyRunning,
+    element,
   } = useBuilder();
   return (
     <React.Fragment>
@@ -51,6 +71,17 @@ const Content = () => {
             <i className="fa-solid fa-circle-check" /> Save this step
           </Button>
         </React.Fragment>
+      )}
+      {element?.src ? (
+        <Button
+          fullWidth
+          sx={{ my: 2 }}
+          onClick={() => downloadImage(element.src)}
+        >
+          Download selected image
+        </Button>
+      ) : (
+        <p>Please pick an image element to download.</p>
       )}
       <Joyride steps={getSteps()} run={isJourneyRunning} />
     </React.Fragment>

@@ -21892,7 +21892,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga sed aliquam quae harum saepe hic dolore repellat asperiores sint illo distinctio corporis officia assumenda suscipit illum aut, omnis reiciendis! Saepe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    width: 500,
+    src: "https://imssystems.tech/static/assets/images/ims-technologies-official.png"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], null, "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga sed aliquam quae harum saepe hic dolore repellat asperiores sint illo distinctio corporis officia assumenda suscipit illum aut, omnis reiciendis! Saepe."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
     size: "sm",
     margin: "normal",
     required: true,
@@ -21942,6 +21945,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var stepkey = "react-step-builder-key";
+function downloadImage(url) {
+  fetch(url).then(function (response) {
+    return response.blob();
+  }).then(function (blob) {
+    var downloadUrl = window.URL.createObjectURL(blob);
+    var urlsplitted = url.split("/");
+    var link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", urlsplitted[urlsplitted.length - 1]);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }).catch(function (error) {
+    console.error("Error fetching image:", error);
+  });
+}
 function getSteps() {
   return localStorage.getItem(stepkey) ? JSON.parse(localStorage.getItem(stepkey)) : [];
 }
@@ -21954,7 +21973,8 @@ var Content = function Content() {
     clearSteps = _useBuilder.clearSteps,
     handleContentChange = _useBuilder.handleContentChange,
     toggleJourney = _useBuilder.toggleJourney,
-    isJourneyRunning = _useBuilder.isJourneyRunning;
+    isJourneyRunning = _useBuilder.isJourneyRunning,
+    element = _useBuilder.element;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, getSteps().length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "contained",
     fullWidth: true,
@@ -21997,7 +22017,15 @@ var Content = function Content() {
     onClick: saveStep
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     className: "fa-solid fa-circle-check"
-  }), " Save this step")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_joyride__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), " Save this step")), element !== null && element !== void 0 && element.src ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    fullWidth: true,
+    sx: {
+      my: 2
+    },
+    onClick: function onClick() {
+      return downloadImage(element.src);
+    }
+  }, "Download selected image") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Please pick an image element to download."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_joyride__WEBPACK_IMPORTED_MODULE_2__["default"], {
     steps: getSteps(),
     run: isJourneyRunning
   }));
@@ -22082,9 +22110,8 @@ function useElementPicker() {
     openApplication = _useApplication.openApplication,
     toggleApplication = _useApplication.toggleApplication;
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    setImage(snapShot);
     openApplication();
-  }, [snapShot]);
+  }, [element]);
   var picker = new _riadhossain43_dom_element_picker__WEBPACK_IMPORTED_MODULE_2__.ElementPicker({
     style: {
       background: "rgba(30,0,255,0.08)",
@@ -22102,7 +22129,6 @@ function useElementPicker() {
         setElement(el);
         console.log(el);
         console.log((0,unique_selector__WEBPACK_IMPORTED_MODULE_5__["default"])(el));
-        // takeScreenshot(el);
         picker.stop();
       }
     });
