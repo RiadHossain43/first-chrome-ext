@@ -78631,11 +78631,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(_src_page_setup__WEBPACK_IMPORTED_MODULE_4__.rootElement);
 root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_src_App__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
-if (true) {
-  document.getElementById("react-chrome-app-007").classList.add("visible");
-  var _root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById("root"));
-  _root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().StrictMode), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_src_demopage_App__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
-}
+if (false) { var _root; }
 })();
 
 /******/ })()
